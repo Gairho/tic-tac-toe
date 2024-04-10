@@ -1,0 +1,7 @@
+$quantity: 15; // Define the quantity variable
+
+@for $i from 1 through $quantity {
+  .firefly:nth-child(#{$i}) {
+    // Styles for each .firefly element here
+  }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fireflies styles */
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #111;
+        }
+
+        .fireflies {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .fireflies li {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            list-style: none;
+            animation: flicker 3s infinite alternate;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .fireflies li:nth-child(1) {
+            top: 50%;
+            left: 25%;
+        }
+
+        .fireflies li:nth-child(2) {
+            top: 25%;
+            left: 75%;
+        }
+
+        .fireflies li:nth-child(3) {
+            top: 75%;
+            left: 50%;
+        }
+
+        .fireflies li:nth-child(4) {
+            top: 20%;
+            left: 20%;
+        }
+
+        .fireflies li:nth-child(5) {
+            top: 80%;
+            left: 80%;
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fireflies -->
+    <ul class="fireflies">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- Tic Tac Toe Container -->
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div id="status-message"></div>
+        <div class="game-board" id="game-board">
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
+        </div>
+        <button onclick="resetGame()">Reset Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

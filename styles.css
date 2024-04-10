@@ -1,0 +1,395 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #f0f0f0;
+}
+
+#status-message {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+button {
+    background-color: #008080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005050;
+}
+
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    background: url(https://i.pinimg.com/originals/44/6e/3b/446e3b79395a287ca32f7977dd83b290.jpg);
+    background-size: cover;
+  }
+  
+  .firefly {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 0.4vw;
+    height: 0.4vw;
+    margin: -0.2vw 0 0 9.8vw;
+    animation: ease 200s alternate infinite;
+    pointer-events: none;
+  }
+  
+  .firefly::before,
+  .firefly::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform-origin: -10vw;
+  }
+  
+  .firefly::before {
+    background: black;
+    opacity: 0.4;
+    animation: drift ease alternate infinite;
+  }
+  
+  .firefly::after {
+    background: white;
+    opacity: 0;
+    box-shadow: 0 0 0vw 0vw yellow;
+    animation: drift ease alternate infinite, flash ease infinite;
+  }
+  
+  @for $i from 1 through 15 {
+    $steps: random(12) + 16;
+    $rotationSpeed: random(10) + 8s;
+  
+    .firefly:nth-child(#{$i}) {
+      animation-name: move#{$i};
+    }
+  
+    .firefly:nth-child(#{$i})::before {
+      animation-duration: #{$rotationSpeed};
+    }
+  
+    .firefly:nth-child(#{$i})::after {
+      animation-duration: #{$rotationSpeed}, random(6000) + 5000ms;
+      animation-delay: 0ms, random(8000) + 500ms;
+    }
+  
+    @keyframes move#{$i} {
+      @for $step from 0 through $steps {
+        #{$step * (100 / $steps)}% {
+          transform: translateX(random(100) - 50vw) translateY(random(100) - 50vh) scale(random(75) / 100 + .25);
+        }
+      }
+    }
+  }
+  
+  @keyframes drift {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes flash {
+    0%, 30%, 100% {
+      opacity: 0;
+      box-shadow: 0 0 0vw 0vw yellow;
+    }
+    5% {
+      opacity: 1;
+      box-shadow: 0 0 2vw 0.4vw yellow;
+    }
+  }
+  
+  @import url( 
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); 
+
+* { 
+	margin: 0; 
+	padding: 0; 
+	box-sizing: border-box; 
+	font-family: "Poppins", sans-serif; 
+} 
+
+body { 
+	background-color: #000000; 
+	background-image: linear-gradient(bottom, 
+									#000058 60%, 
+									#000033 40%); 
+} 
+
+header { 
+	width: 100%; 
+	height: 90px; 
+	position: absolute; 
+	z-index: 100; 
+	display: flex; 
+	flex-direction: column; 
+	align-items: center; 
+	justify-content: center; 
+	background-color: #ffffff; 
+} 
+
+.heading { 
+	color: green; 
+} 
+
+.title { 
+	font-weight: 400; 
+	letter-spacing: 1.5px; 
+} 
+
+ul.fireflies { 
+	list-style: none; 
+} 
+
+li { 
+	border-radius: 50%; 
+	background-color: rgb(255, 255, 73); 
+	background-image: radial-gradient(rgb(249, 206, 36) 5%, 
+									rgb(254, 179, 4) 25%, 
+									rgb(252, 191, 7) 60%); 
+	box-shadow: 0 0 5px 2px rgb(250, 193, 93), 
+				0 0 20px 10px rgb(255, 228, 140), 
+				0 0 40px 15px rgb(255, 219, 41); 
+	height: 5px; 
+	width: 5px; 
+	top: -20px; 
+	position: absolute; 
+	animation: leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1), 
+		updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1), 
+		blinking 3s infinite; 
+} 
+
+/* first 10 */
+li:nth-of-type(1) { 
+	animation-delay: 1s; 
+	animation-duration: 65s, 81s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(2) { 
+	animation-delay: 0.5s; 
+	animation-duration: 80s, 75s, 0.01s; 
+} 
+
+li:nth-of-type(3) { 
+	animation-delay: 1.5s; 
+	animation-duration: 70s, 60s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(4) { 
+	animation-delay: 2.5s; 
+	animation-duration: 90s, 80s, 0.01s; 
+} 
+
+li:nth-of-type(5) { 
+	animation-delay: 0.3s; 
+	animation-duration: 55s, 75s, 0.01s; 
+} 
+
+li:nth-of-type(6) { 
+	animation-delay: 2.2s; 
+	animation-duration: 79s, 63s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(7) { 
+	animation-delay: 0.9s; 
+	animation-duration: 70s, 80s, 0.01s; 
+} 
+
+li:nth-of-type(8) { 
+	animation-delay: 1.6s; 
+	animation-duration: 50s, 40s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(9) { 
+	animation-delay: 1.8s; 
+	animation-duration: 77s, 88s, 0.01s; 
+} 
+
+li:nth-of-type(10) { 
+	animation-delay: 3s; 
+	animation-duration: 87s, 73s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+/* last 10 */
+li:nth-of-type(11) { 
+	animation-delay: 1s; 
+	animation-duration: 60s, 78s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(12) { 
+	animation-delay: 0.5s; 
+	animation-duration: 85s, 80s, 0.01s; 
+} 
+
+li:nth-of-type(13) { 
+	animation-delay: 1.5s; 
+	animation-duration: 75s, 66s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(14) { 
+	animation-delay: 2.5s; 
+	animation-duration: 87s, 75s, 0.01s; 
+} 
+
+li:nth-of-type(15) { 
+	animation-delay: 0.3s; 
+	animation-duration: 69s, 85s, 0.01s; 
+} 
+
+li:nth-of-type(16) { 
+	animation-delay: 2.2s; 
+	animation-duration: 80s, 77s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(17) { 
+	animation-delay: 0.9s; 
+	animation-duration: 65s, 88s, 0.01s; 
+} 
+
+li:nth-of-type(18) { 
+	animation-delay: 1.6s; 
+	animation-duration: 59s, 63s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+li:nth-of-type(19) { 
+	animation-delay: 1.8s; 
+	animation-duration: 88s, 79s, 0.01s; 
+} 
+
+li:nth-of-type(20) { 
+	animation-delay: 3s; 
+	animation-duration: 59s, 75s, 0.01s; 
+	animation-fill-mode: backwards, backwards; 
+} 
+
+/* animations */
+
+/* It will create the left right movement */
+@keyframes leftright { 
+
+	0%, 
+	100% { 
+		left: 80%; 
+	} 
+
+	16.666% { 
+		left: 95%; 
+	} 
+
+	33.333% { 
+		left: 10%; 
+	} 
+
+	50% { 
+		left: 60%; 
+	} 
+
+	66.666% { 
+		left: 70%; 
+	} 
+
+	83.333% { 
+		left: 5%; 
+	} 
+} 
+
+/* It will create the up down movement */
+@keyframes updown { 
+
+	0%, 
+	100% { 
+		top: 10px; 
+	} 
+
+	25% { 
+		top: 90%; 
+	} 
+
+	50% { 
+		top: 50%; 
+	} 
+
+	75% { 
+		top: 95%; 
+	} 
+} 
+
+/* It will create the blinking effect */
+@keyframes blinking { 
+
+	0%, 
+	100% { 
+		box-shadow: 0 0 5px 2px rgb(250, 193, 93), 
+					0 0 10px 5px rgb(255, 242, 63), 
+					0 0 30px 10px rgb(255, 219, 41); 
+		height: 0; 
+		width: 0; 
+	} 
+
+	50% { 
+		box-shadow: 0 0 5px 2px rgb(250, 193, 93), 
+					0 0 20px 10px rgb(255, 228, 140), 
+					0 0 40px 15px rgb(255, 219, 41); 
+	} 
+
+	75% { 
+		box-shadow: 0 0 0px 0px rgb(250, 193, 93), 
+					0 0 0px 0px rgb(255, 228, 140), 
+					0 0 0px 0px rgb(255, 219, 41); 
+	} 
+}
+
